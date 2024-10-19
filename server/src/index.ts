@@ -39,7 +39,8 @@ io.on('connection', (socket) => {
         try {
             const room = roomService.addPlayerToRoom(roomId, socket.id, name);
             socket.join(roomId);
-            io.to(room.id).emit('room:joined', room);
+            socket.emit('room:joined', room);
+            socket.broadcast.to(room.id).emit('room:updated', room);
         } catch (error) {
             console.log('Error joining room', error)
         }
@@ -48,7 +49,7 @@ io.on('connection', (socket) => {
     socket.on('room:buzz', (roomId: string) => {
         try {
             const room = roomService.buzzPlayer(roomId, socket.id);
-            io.to(room.id).emit('room:buzzed', room);
+            io.to(room.id).emit('room:updated', room);
         } catch (error) {
             console.log('Error buzzing');
         }
@@ -57,7 +58,7 @@ io.on('connection', (socket) => {
     socket.on('room:reset', (roomId: string) => {
         try {
             const room = roomService.resetPlayerBuzzes(roomId);
-            io.to(room.id).emit('room:reseted', room);
+            io.to(room.id).emit('room:updated', room);
         } catch (error) {
             console.log('Error reseting');
         }
@@ -69,7 +70,7 @@ io.on('connection', (socket) => {
             const rooms = roomService.getRoomsByPlayerId(socket.id);
             rooms.forEach(room => {
                 const r = roomService.removePlayerFromRoom(room.id, socket.id);
-                io.to(room.id).emit('room:left', r);
+                io.to(room.id).emit('room:updated', r);
             });
         } catch (error) {
             console.log('Error disconnecting player', error);

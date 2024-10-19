@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { useSocketContext } from "../hooks/useSocketContext";
+import { useAppContext } from "../hooks/useAppContext";
 
 const Home: React.FC = () => { 
     const navigate = useNavigate();
-    const { socket } = useSocketContext();
+    const { socket } = useAppContext();
 
     const handleHostRoomButtonClick = () => {
         if (socket && socket.connected) {
