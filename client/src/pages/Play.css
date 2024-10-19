@@ -12,6 +12,8 @@ body {
 }
 
 .buzz-button {
+    width: 250px;
+    aspect-ratio: 1/1;
     background: none;
     border: none;
     font-size: 10em;

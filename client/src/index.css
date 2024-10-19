@@ -11,3 +11,59 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+[class*="container"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+button {
+  background-color: #242424;
+}
+
+button, input {
+  width: 250px;
+  aspect-ratio: 5/1;
+  padding: 0;
+  border-radius: 10px;
+  text-align: center;
+  font-size: x-large;
+}
+
+input {
+  text-transform: uppercase;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-container p {
+  position: absolute;
+  top: -40px; 
+  left: 0;
+}
+
+.players-container {
+  gap: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.player-container {
+  display: flex;
+  flex-direction: row;
+  font-size: x-large;
+  text-transform: uppercase;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.player-container p {
+  gap: 0px;
+  padding: 0px;
+  margin: 0px;
+}

@@ -14,13 +14,13 @@ const Players: React.FC<{ players: Player[] }> = ({ players }) => {
 
     return (
         (players.length === 0 ? (
-            <div>Waiting for players..</div>
+            <div className='players-container'>Waiting for players..</div>
         ) : (
-            <div>
+            <div className='players-container'>
                 {players.map((player) => (
-                    <div key={player.id}>
-                        <p>{player.name}</p>
-                        <p>{player.buzzTime ? `+${((player.buzzTime - fastestTime) / 1000).toFixed(3)} seconds` : "Hasn't buzzed!"}</p>
+                    <div className='player-container' key={player.id}>
+                        <p className='name'>{player.name}</p>
+                        <p className='time'>{player.buzzTime ? `+${((player.buzzTime - fastestTime) / 1000).toFixed(3)} seconds` : "Hasn't buzzed!"}</p>
                     </div>
                 ))}
             </div>
@@ -69,13 +69,15 @@ const Host: React.FC = () => {
 
     return (
         <div className='host-container'>
-            <h1>Hello from host!</h1>
-            <button onClick={handleBuzzResetButtonClick}>Reset buzzes</button>
             {room ? (
                 <>
-                    <p>Room ID: {room.id}</p>
+                    <h1>Room ID: {room.id}</h1>
+                    <div className='input-container'>
+                        <p>Answering time:</p>
+                        <input type='number' min='0' max='10' value={answerTime} onChange={(e) => setAnswerTime(Number(e.target.value))}/>
+                    </div>
+                    <button onClick={handleBuzzResetButtonClick}>Reset Buzzers</button>
                     <Players players={room.players} />
-                    <p>Answering time:</p><input type='number' min='0' max='10' value={answerTime} onChange={(e) => setAnswerTime(Number(e.target.value))}/>
                 </>
             ) : (
                 <p>Creating room..</p>

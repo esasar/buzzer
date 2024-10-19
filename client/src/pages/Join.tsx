@@ -19,17 +19,22 @@ const Join: React.FC = () => {
     };
 
     return (
-        <div>
-            <a>Room Id</a>
-            <input 
-                value={roomId}
-                onChange={(e) => setRoomId(e.target.value)}
-            />
-            <a>Name</a>
-            <input 
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
+        <div className='join-container'>
+            <h1>Join Room</h1>
+            <div className='input-container'>
+                <p>Room Id</p>
+                <input 
+                    value={roomId}
+                    onChange={(e) => setRoomId(e.target.value)}
+                />
+            </div>
+            <div className='input-container'>
+                <p>Name</p>
+                <input 
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+            </div>
             <button onClick={handleJoinRoomButtonClick}>Join room</button>
         </div>
     )
