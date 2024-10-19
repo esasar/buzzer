@@ -33,7 +33,7 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
             navigate('/');
         });
 
-        socket?.on('room:buzzed', (room: Room) => {
+        newSocket?.on('room:updated', (room: Room) => {
             setRoom(room);
         });
 

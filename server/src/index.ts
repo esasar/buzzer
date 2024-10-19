@@ -38,9 +38,10 @@ io.on('connection', (socket) => {
     socket.on('room:join', (roomId: string, name: string) => {
         try {
             const room = roomService.addPlayerToRoom(roomId, socket.id, name);
+            console.log(room);
             socket.join(roomId);
             socket.emit('room:joined', room);
-            socket.broadcast.to(room.id).emit('room:updated', room);
+            io.to(room.id).emit('room:updated', room);
         } catch (error) {
             console.log('Error joining room', error)
         }

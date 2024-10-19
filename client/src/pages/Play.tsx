@@ -3,6 +3,7 @@ import { Socket } from 'socket.io-client';
 import { Room } from '../types';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
+import './Play.css';
 
 const BuzzerButton: React.FC<{ socket: Socket | undefined, room: Room | undefined }> = ({ socket, room }) => {
     const handleBuzzButtonClick = () => {
@@ -30,7 +31,7 @@ const Play = () => {
     }, [socket, room, navigate]);
 
     return (
-        <div>
+        <div className={`play-container ${!room?.players[0].buzzTime ? '' : room?.players[0].id === socket?.id ? 'winner' : 'loser'}`}>
             <BuzzerButton socket={socket} room={room} />
         </div>
     )

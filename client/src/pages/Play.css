@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.play-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.buzz-button {
+    background: none;
+    border: none;
+    font-size: 10em;
+    position: relative;
+}
+
+.buzz-button::after {
+    content: 'BUZZ';
+    position: absolute;
+    font-size: 0.3em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.buzz-button:hover {
+    cursor: pointer;
+}
+
+.buzz-button:active {
+    transform: scale(0.95);
+}
+
+.winner {
+    box-shadow: 0 0 50px 15px green inset;
+}
+  
+.loser {
+    box-shadow: 0 0 50px 15px red inset;
+}
