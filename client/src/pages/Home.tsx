@@ -5,7 +5,7 @@ const Home: React.FC = () => {
     const navigate = useNavigate();
     const { socket } = useAppContext();
 
-    const handleHostRoomButtonClick = () => {
+    const handleHostButton = () => {
         if (socket && socket.connected) {
             navigate('/host');
         } else {
@@ -13,7 +13,7 @@ const Home: React.FC = () => {
         }   
     };
 
-    const handleJoinRoomButtonClick = () => {
+    const handleJoinButton = () => {
         if (socket && socket.connected) {
             navigate('/join');
         } else {
@@ -23,9 +23,10 @@ const Home: React.FC = () => {
 
     return (
         <div className='home-container'>
-            <h1>Home</h1>
-            <button onClick={handleHostRoomButtonClick}>Host game</button>
-            <button onClick={handleJoinRoomButtonClick}>Join game</button>
+            <h1>Buzzer</h1>
+            <div>Tool for quiz games!</div>
+            <button onClick={handleHostButton}>Host</button>
+            <button onClick={handleJoinButton}>Join</button>
         </div>
     )
 }

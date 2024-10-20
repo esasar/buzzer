@@ -18,6 +18,14 @@ const Join: React.FC = () => {
         }
     };
 
+    const handleRoomIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // room id can only be A-Z 0-9
+        const value = e.target.value.toUpperCase();
+        if (/^[A-Z0-9]*$/.test(value)) {
+            setRoomId(value);
+        }
+    };
+
     return (
         <div className='join-container'>
             <h1>Join Room</h1>
@@ -25,7 +33,9 @@ const Join: React.FC = () => {
                 <p>Room Id</p>
                 <input 
                     value={roomId}
-                    onChange={(e) => setRoomId(e.target.value)}
+                    onChange={handleRoomIdChange}
+                    maxLength={4}
+                    pattern="^[A-Z0-9]*$"
                 />
             </div>
             <div className='input-container'>
@@ -33,6 +43,7 @@ const Join: React.FC = () => {
                 <input 
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    maxLength={16}
                 />
             </div>
             <button onClick={handleJoinRoomButtonClick}>Join room</button>

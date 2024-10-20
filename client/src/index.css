@@ -67,3 +67,14 @@ input {
   padding: 0px;
   margin: 0px;
 }
+
+.mute-button {
+  width: 30px;
+  aspect-ratio: 1/1;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}

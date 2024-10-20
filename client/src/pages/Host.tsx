@@ -18,7 +18,7 @@ const Players: React.FC<{ players: Player[] }> = ({ players }) => {
         ) : (
             <div className='players-container'>
                 {players.map((player) => (
-                    <div className='player-container' key={player.id}>
+                    <div className='player-container' key={player.id} style={{ color: player.buzzTime === fastestTime ? 'green' : undefined }}>
                         <p className='name'>{player.name}</p>
                         <p className='time'>{player.buzzTime ? `+${((player.buzzTime - fastestTime) / 1000).toFixed(3)} seconds` : "Hasn't buzzed!"}</p>
                     </div>
@@ -31,8 +31,10 @@ const Players: React.FC<{ players: Player[] }> = ({ players }) => {
 const Host: React.FC = () => {
     const { socket, room, setRoom } = useAppContext();
     const [answerTime, setAnswerTime] = useState<number>(0);
+    const [isMuted, setIsMuted] = useState<boolean>(true);
     const navigate = useNavigate();
-    const audio = new Audio('/src/assets/beep.wav');
+    const buzzedAudio = new Audio('/src/assets/buzzed.wav');
+    const errorAudio = new Audio('/src/assets/error.wav');
 
     useEffect(() => {
         // navigate back to home if user loses connection
@@ -54,29 +56,49 @@ const Host: React.FC = () => {
     }, [socket, navigate, setRoom]);
 
     useEffect(() => {
-        if (room?.players[0]?.buzzTime && answerTime !== 0) {
+        if (room?.players[0]?.buzzTime && answerTime !== 0 && !isMuted) {
+            buzzedAudio.play();
             const timer = setTimeout(() => {
-                audio.play();
+                errorAudio.play();
             }, answerTime * 1000);
 
             return () => clearTimeout(timer);
         }
     }, [room?.players[0]?.buzzTime]);
 
-    const handleBuzzResetButtonClick = () => {
+    const handleBuzzReset = () => {
         socket?.emit('room:reset', room?.id);
     };
+
+    const handleMute = () => {
+        setIsMuted(!isMuted);
+    };
+
+    const handleAnswerTimeBlur = () => {
+        if (answerTime > 60) {
+            setAnswerTime(60);
+        } else if (answerTime < 0) {
+            setAnswerTime(0);
+        }
+    }
 
     return (
         <div className='host-container'>
             {room ? (
                 <>
                     <h1>Room ID: {room.id}</h1>
+                    <button className='mute-button' onClick={handleMute}>{isMuted ? '🔇' : '🔈'}</button>
                     <div className='input-container'>
-                        <p>Answering time:</p>
-                        <input type='number' min='0' max='10' value={answerTime} onChange={(e) => setAnswerTime(Number(e.target.value))}/>
+                        <p>Buzzer time:</p>
+                        <input 
+                            type='number' 
+                            min='0' max='60' 
+                            value={answerTime} 
+                            onChange={(e) => setAnswerTime(Number(e.target.value))}
+                            onBlur={handleAnswerTimeBlur}
+                        />
                     </div>
-                    <button onClick={handleBuzzResetButtonClick}>Reset Buzzers</button>
+                    <button onClick={handleBuzzReset}>Reset Buzzers</button>
                     <Players players={room.players} />
                 </>
             ) : (
