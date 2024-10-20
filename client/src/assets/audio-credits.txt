@@ -5,7 +5,7 @@ Audio credits
     Source: https://freesound.org/s/142608/
     License: License: Attribution 4.0
 
-2. "outOfTime" (Renamed from: 619839__cogfirestudios__sine-beep-sytlized-app-ui)
+2. "buzzed" (Renamed from: 619839__cogfirestudios__sine-beep-sytlized-app-ui)
     Creator: CogFireStudios 
     Source: https://freesound.org/s/619839/
     License: Creative Commons 0
