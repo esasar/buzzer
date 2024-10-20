@@ -23,21 +23,19 @@ Steps:
 
 ## Screenshots
 
-<div style="display: flex; justify-content: center; flex-wrap: wrap;">
-    <figure style="width: 21%; margin: 1%; text-align: center;">
-        <img src="./.images/home.png" alt="Home" style="width: 100%;" />
-        <figcaption>Home</figcaption>
-    </figure>
-    <figure style="width: 21%; margin: 1%; text-align: center;">
-        <img src="./.images/host.png" alt="Host" style="width: 100%;" />
-        <figcaption>Host</figcaption>
-    </figure>
-    <figure style="width: 21%; margin: 1%; text-align: center;">
-        <img src="./.images/join.png" alt="Join" style="width: 100%;" />
-        <figcaption>Join</figcaption>
-    </figure>
-    <figure style="width: 21%; margin: 1%; text-align: center;">
-        <img src="./.images/winner.png" alt="Winner" style="width: 100%;" />
-        <figcaption>Winner</figcaption>
-    </figure>
-</div>
+<table>
+  <tr>
+    <td align="center">
+      <img src="./.images/home.png" alt="Home" width="200"/><br>Home
+    </td>
+    <td align="center">
+      <img src="./.images/host.png" alt="Host" width="200"/><br>Host
+    </td>
+    <td align="center">
+      <img src="./.images/join.png" alt="Join" width="200"/><br>Join
+    </td>
+    <td align="center">
+      <img src="./.images/winner.png" alt="Winner" width="200"/><br>Winner
+    </td>
+  </tr>
+</table>
