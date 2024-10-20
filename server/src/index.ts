@@ -15,9 +15,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, { cors });
 
-app.get('/', (request: Request, response: Response) => {
-    response.send('Hello world!')
-});
+app.use(express.static('dist/public'));
 
 io.on('connection', (socket) => {
     console.log('a user connected');
@@ -79,8 +77,12 @@ io.on('connection', (socket) => {
     });
 });
 
+app.use((req, res) => {
+    res.redirect('/');
+});
+
 server.listen(PORT, () => {
-    console.log(`server listening on port http://localhost:${PORT}`)
-})
+    console.log(`server listening on port http://localhost:${PORT}`);
+});
   
 

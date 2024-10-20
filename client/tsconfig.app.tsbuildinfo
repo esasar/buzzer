@@ -1,0 +1,1 @@
+{"root":["./src/main.tsx","./src/types.ts","./src/vite-env.d.ts","./src/context/AppContext.tsx","./src/hooks/useAppContext.ts","./src/pages/Home.tsx","./src/pages/Host.tsx","./src/pages/Join.tsx","./src/pages/NotFound.tsx","./src/pages/Play.tsx"],"version":"5.6.3"}

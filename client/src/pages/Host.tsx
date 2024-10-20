@@ -33,8 +33,8 @@ const Host: React.FC = () => {
     const [answerTime, setAnswerTime] = useState<number>(0);
     const [isMuted, setIsMuted] = useState<boolean>(true);
     const navigate = useNavigate();
-    const buzzedAudio = new Audio('/src/assets/buzzed.wav');
-    const errorAudio = new Audio('/src/assets/error.wav');
+    const buzzedAudio = new Audio('./assets/buzzed.wav');
+    const errorAudio = new Audio('./assets/error.wav');
 
     useEffect(() => {
         // navigate back to home if user loses connection

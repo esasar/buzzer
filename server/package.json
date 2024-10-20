@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "dev": "tsc --watch & node --watch dist/index.js"
+    "dev": "tsc --watch & node --watch dist/index.js",
+    "build:client": "cd ../client && npm run build && cp -r dist ../server/dist/public && cp ./assets/* ../server/dist/public/assets",
+    "build:server": "tsc",
+    "build:all": "rm -rf dist && npm run build:server && npm run build:client",
+    "start": "node dist/index.js"
   },
   "author": "",
   "license": "ISC",

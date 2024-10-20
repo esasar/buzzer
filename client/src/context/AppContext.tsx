@@ -9,7 +9,10 @@ interface AppContextType {
     setRoom: React.Dispatch<React.SetStateAction<Room | undefined>>;
 };
 
-const URL = 'http://localhost:8080';
+const isNodeEnv = typeof process !== 'undefined' && process.env;
+
+const URL = isNodeEnv ? process.env.VITE_API_URL : 'http://localhost';
+const PORT = isNodeEnv ? process.env.VITE_API_PORT : 8080;
 
 interface AppProviderProps {
     children: React.ReactNode;
@@ -23,7 +26,7 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const newSocket = io(URL);
+        const newSocket = io(`${URL}:${PORT}`);
         setSocket(newSocket);
 
         newSocket.on('connect', () => {
